@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Room</title>
+  <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js"></script>
+  <link href="/assets/fontawesome/css/all.css" rel="stylesheet" />
+</head>
+<body>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBPYWSE933"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GBPYWSE933');
+</script>
+
+  <div id="app">
+    <div id="auth-section">
+      <h1>Chat Room</h1>
+      <div class="container2">
+        <input type="text" id="username" placeholder="Enter your username">
+        <input type="text" id="room-code" placeholder="Enter room code"><br>
+      </div>
+      <div class="container">
+        <button id="create-room-btn" style="margin:5px;">Create Room</button>
+        <button id="join-room-btn" style="margin:5px;">Join Room</button>
+      </div><br><br>
+      <p class="general" ><i><center>For general chat, enter code 'general'</center></i></p>
+    </div>
+
+    <div id="chat-section" style="display:none;">
+      <h2 id="room-title">Room: <span id="room-id"></span></h2>
+      <center><p class="clicktocopy" style="margin-top: -10px;"><i>Click the code to copy it!</i></p></center>
+      <div id="chat-box"></div>
+      <div class="container">
+        <input type="text" id="message-input" placeholder="Type your message..." >
+        <button id="send-btn" style="margin-top: 12px; margin-left: -50px;"><i class="fa-solid fa-paper-plane" style="scale: 125%; padding-bottom: 10px; padding-right: 10px;"></i></button>
+      </div>
+      <div class="container">
+        <button id="leave-room-btn" style="margin:5px;">Leave Room</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="madeby">Made by <a href="https://sprintingsnail69.github.io" target="_blank">SprintingSnail69</a> and <a href="https://cobblesteve01.github.io" target="_blank">cobblesteve01</a></div >
+  </footer>
+
+  <div id="toast2" class="toast2"><i class="fa-regular fa-circle-check" style="scale: 175%; color: rgb(0, 179, 0);;"></i>&nbsp;Room code copied to clipboard!</div>
+
+  <div id="toast" class="toast"><i class="fa-regular fa-circle-xmark" style="scale: 175%; color: red"></i>&nbsp;Your message contains profanity and was not sent.</div>
+
+  <script type="module" src="main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/appwrite"></script>
+</body>
+</html>
