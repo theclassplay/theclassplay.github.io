@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classplay Profile</title>
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" id="theme-style" href="style.css">
+  <script src="themes.js"></script>
+  <script src="main.js"></script>
+  <script src="settings.js"></script>
+  <link href="assets/fontawesome/css/all.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/appwrite@16.0.2"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js" type="module"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js" type="module"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js" type="module"></script>
+</head>
+<body>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GBPYWSE933"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GBPYWSE933');
+</script>
+
+<nav>
+  <ul>
+      <li class="title"><a href="/" style="font-weight: 560;">Classplay</a></li>
+      <li><a href="settings" style="margin-right: -30px; margin-left: 25px;"><i class="fa-solid fa-cog"></i><p style="margin-left: 72px;">Settings</p></a></li>
+      <li><a href="profile" style="margin-right: -30px;"><i class="fa-solid fa-user"></i><p style="margin-left: 52px;">Profile</p></a></li>
+      <li><a href="lnk"><i class="fa-solid fa-link"></i><p style="margin-left: 60px;">Links</p></a></li>
+      <li><a href="chat/"><i class="fa-solid fa-message"></i><p style="margin-left: 60px;">Chat</p></a></li>
+      <li><a class="disabled"><i class="fa-solid fa-tv"></i><p style="color: white; margin-left: 58px;">Movies</p></a></li>
+      <li><a href="p"><i class="fa-solid fa-search"></i><p>Search</p></a></li>
+      <li><a href="s"><i class="fa-solid fa-music"></i><p>Sounds</p></a></li>
+      <li><a href="apps"><i class="fa-solid fa-folder"></i><p style="margin-left: 60px;">Apps</p></a></li>
+      <li><a href="g"><i class="fa-solid fa-gamepad"></i><p style="margin-left: 53px;">Games</p></a></li>
+  </ul>   
+</nav>
+
+<br><br><br><br>
+
+    <center>
+        <h1>THIS FEATURE DOES NOT WORK...YET / WORK IN PROGRESS!</h1>
+        <div id="register">
+            <h1>Register an Account</h1>
+            <input type="text" id="register-username" placeholder="Username"><br><br>
+            <input type="password" id="register-password" placeholder="Password"><br><br>
+            <button onclick="registerUser()">Register</button>
+            <br><br><br>
+            <p>Already have an account? <a onclick="displayLogin()">Login</a></p>
+        </div>
+    </center>
+    
+      <!-- Login Form -->
+      <center>
+        <div id="login" style="display: none;">
+            <h1>Login to an Account</h1>
+            <input type="text" id="login-username" placeholder="Username"><br><br>
+            <input type="password" id="login-password" placeholder="Password"><br><br>
+            <button onclick="loginUser()">Login</button>
+            <br><br><br>
+            <p>Need an account? <a onclick="displayRegister()">Register</a></p>
+        </div>
+    </center>
+    
+      <!-- Logout Button -->
+      <div id="logout" style="display: none;">
+        <h2>Welcome!</h2>
+        <button onclick="logoutUser()">Logout</button>
+      </div>
+
+      <script type="module" src="profile.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="title">Classplay - Games</title>
+  <link id="favicon" rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" id="theme-style" href="style.css">
+  <script src="themes.js"></script>
+  <script src="main.js"></script>
+  <script src="settings.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+  <link href="/assets/fontawesome/css/all.css" rel="stylesheet" />
+</head>
+<body>
+
+<style>
+  .launch-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transition: opacity .5s ease;
+}
+
+.content {
+    z-index: 1;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+.game-image {
+    max-width: 200px;
+    margin-bottom: 20px;
+    border-radius: 25px;
+}
+
+#launchMessage {
+    font-size: 24px;
+}
+</style>
+
+<div id="launchScreen" class="launch-screen">
+  <div class="overlay"></div>
+  <div class="content">
+      <img id="gameImage" src="" alt="Game Image" class="game-image">
+      <p id="launchMessage">Launching <span id="gameName"></span>...</p>
+  </div>
+</div>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GBPYWSE933"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GBPYWSE933');
+</script>
+  
+
+<nav>
+  <ul>
+      <li class="title"><a href="/" style="font-weight: 560;">Classplay</a></li>
+      <li><a href="settings" style="margin-right: -30px; margin-left: 25px;"><i class="fa-solid fa-cog"></i><p style="margin-left: 72px;">Settings</p></a></li>
+      <li><a href="profile" style="margin-right: -30px;"><i class="fa-solid fa-user"></i><p style="margin-left: 52px;">Profile</p></a></li>
+      <li><a href="lnk"><i class="fa-solid fa-link"></i><p style="margin-left: 60px;">Links</p></a></li>
+      <li><a href="chat/"><i class="fa-solid fa-message"></i><p style="margin-left: 60px;">Chat</p></a></li>
+      <li><a class="disabled"><i class="fa-solid fa-tv"></i><p style="color: white; margin-left: 58px;">Movies</p></a></li>
+      <li><a href="p"><i class="fa-solid fa-search"></i><p>Search</p></a></li>
+      <li><a href="s"><i class="fa-solid fa-music"></i><p>Sounds</p></a></li>
+      <li><a href="apps"><i class="fa-solid fa-folder"></i><p style="margin-left: 60px;">Apps</p></a></li>
+      <li><a href="g"><i class="fa-solid fa-gamepad"></i><p style="margin-left: 53px;">Games</p></a></li>
+  </ul>   
+</nav>
+
+
+<center>
+  <h1 class="title" style="margin-bottom: 15px">Games</h1>  
+  <!-- Search Bar -->
+  <input type="text" name="search" class="games-search" id="gameSearch" placeholder="Search through our games!" onkeyup="filterGames()" />
+</center>
+
+<br>
+
+<div class="games-container">
+   
+    <div class="game-card" id="Request">
+      <a href="https://forms.gle/ZRD1M73cgp8iv2757">
+        <img src="img/gforms-logo.png" style="width: 150px;" alt="glogo">
+      </a>
+      <div class="game-title-overlay">
+        <span>Request a game</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="Randomizer">
+      <a onclick="pickRandomGame()" style="cursor: pointer;">
+        <img src="img/randomizer.png" style="width: 150px;" alt="glogo">
+      </a>
+      <div class="game-title-overlay">
+        <span>Random Game</span>
+      </div>
+    </div>
+    
+    <div class="game-card" id="Minecraft"s>
+      <a href="/downloads/eaglercraftx">
+        <img src="img/mc.png" style="width: 150px;" alt="Minecraft">
+      </a>
+      <div class="game-title-overlay">
+        <span>Minecraft</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="Dadish 3">
+      <a href="/games/dadish3/" onclick="refreshWarning()">
+        <img src="img/dadish3.png" style="width: 150px;" alt="Dadish 3">
+      </a>
+      <div class="game-title-overlay">
+        <span>Dadish 3</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="Super Mario 64">
+      <a href="/games/supermario64/">
+        <img src="img/mario64.png" style="width: 150px;" alt="Super Mario 64">
+      </a>
+      <div class="game-title-overlay">
+        <span>Super Mario 64</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="Retro Bowl">
+      <a href="/games/retro-bowl/">
+        <img src="img/retro-bowl.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Retro Bowl</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="Retro Bowl College">
+      <a href="/games/rb-college/">
+        <img src="img/rb-college.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>RB College <p class="invis">Retro Bowl College</p></span>
+      </div>
+    </div>
+
+    <div class="game-card" id="Football Bros">
+      <a href="/games/football-bros/">
+        <img src="img/footballbros.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Football Bros</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="Polytrack 4">
+      <a href="/games/polytrack/">
+        <img src="img/polytrack.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Polytrack 4</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="Slope">
+      <a href="/games/slope/">
+        <img src="img/slope.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Slope</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="Amazing Rope Police">
+      <a href="/games/amazing-rope-police/">
+        <img src="img/gta.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Amazing Rope Police</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="Run 3">
+      <a href="/games/run3/">
+        <img src="img/run3.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Run 3</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="Dadish 2">
+      <a href="/games/dadish-2/">
+        <img src="img/dadish2.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Dadish 2</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="Dadish">
+      <a href="/games/dadish/">
+        <img src="img/dadish.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Dadish</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="Sandboxels">
+      <a href="/games/sandboxels/">
+        <img src="img/sandboxels.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Sandboxels</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="Sandtrix">
+      <a href="/games/sandtris/">
+        <img src="img/sandtrix.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Sandtrix</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="Snow Rider">
+      <a href="/games/snowrider/">
+        <img src="img/snowrider.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Snow Rider 3D</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="A Small World Cup">
+      <a href="/games/asmallworldcup/">
+        <img src="img/aswc2023.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>A Small World Cup 2023</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="1v1 LOL">
+      <a href="/games/1v1lol/">
+        <img src="img/1v1lol.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>1v1 LOL</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="ovo">
+      <a href="/games/ovo/">
+        <img src="img/ovo.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>OvO</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="Basket Bros">
+      <a href="/games/basketbros/">
+        <img src="img/basketbros.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Basket Bros</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="drift boss">
+      <a href="/games/driftboss/">
+        <img src="img/driftboss.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Drift Boss</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="geometry dash gd">
+      <a href="/games/html/gd">
+        <img src="img/gd.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Geometry Dash <p class="invis">gd</p></span>
+      </div>
+    </div>
+
+    <div class="game-card" id="FNAF">
+      <a href="/games/fnaf/">
+        <img src="img/fnaf.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>FNAF</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="FNAF 2">
+      <a href="/games/fnaf2/">
+        <img src="img/fnaf2.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>FNAF 2</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="FNAF 3">
+      <a href="/games/fnaf3/">
+        <img src="img/fnaf3.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>FNAF 3</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="FNAF 4">
+      <a href="/games/fnaf4/">
+        <img src="img/fnaf4.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>FNAF 4</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="OWT 1">
+        <a href="/games/owt1/">
+          <img src="img/owt1.png" style="width: 150px;">
+        </a>
+        <div class="game-title-overlay">
+          <span>One Way Ticket<p class="invis">OWT1, OWT 1</p></span>
+        </div>
+    </div>
+
+    <div class="game-card" id="OWT 2">
+        <a href="/games/owt2/">
+          <img src="img/owt2.png" style="width: 150px;">
+        </a>
+        <div class="game-title-overlay">
+          <span>One Way Ticket 2<p class="invis">OWT2, OWT 2</p></span>
+        </div>
+    </div>
+
+    <div class="game-card" id="Territorial">
+      <a href="/games/html/territorial">
+        <img src="img/territorial.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>territorial.io</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="worlds hardest game">
+      <a href="/games/worldshardestgame/">
+        <img src="img/whg.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>World's Hardest Game</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="ttt">
+      <a href="/games/tic-tac-toe/">
+        <img src="img/ttt.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Tic Tac Toe</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="2048">
+      <a href="/games/2048/">
+        <img src="img/2048.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>2048</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="Chess">
+      <a href="/games/chess/">
+        <img src="img/chess.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Chess</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="cc">
+      <a href="/games/cookieclicker/">
+        <img src="img/cookieclicker.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Cookie Clicker</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="Block Blast">
+      <a href="/games/blockblast/">
+        <img src="img/blockblast.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Block Blast</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="House of Hazards">
+      <a href="/games/houseofhazards/">
+        <img src="img/hoh.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>House of Hazards</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/8ball/">
+        <img src="img/8ball.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>8 Ball</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/basketballstars/">
+        <img src="img/bballstars.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Basketball Stars</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/btts/">
+        <img src="img/btts.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Big Tower Tiny Square</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/alienshooter">
+        <img src="img/alienshooter.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Alien Shooter</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/basketrandom/">
+        <img src="img/basketrandom.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Basket Random</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/bitlife/">
+        <img src="img/bitlife.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Bitlife</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/boxingrandom/">
+        <img src="img/boxingrandom.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Boxing Random</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/clusterrush/">
+        <img src="img/clusterrush.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Cluster Rush</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/eggycar/">
+        <img src="img/eggycar.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Eggy Car</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/html/papaburger">
+        <img src="img/papaburger.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Papa's Burgeria</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/html/papaCheese">
+        <img src="img/papacheese.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Papa's Cheeseria</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/html/papaCupcake">
+        <img src="img/papacupcake.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Papa's Cupcakeria</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/html/papaDonut">
+        <img src="img/papadonut.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Papa's Donut Shop</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/html/papafreezer">
+        <img src="img/papafreeze.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Papa's Freezeria</span>
+      </div>
+    </div>
+    
+    <div class="game-card" id="">
+      <a href="/games/html/papaHotDog">
+        <img src="img/papahotdog.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Papa's Hot Doggeria</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/html/papapancake">
+        <img src="img/papapancake.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Papa's Pancakeria</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/html/papaPastaria">
+        <img src="img/papapasta.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Papa's Pastaria</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/html/papapizzeria">
+        <img src="img/papapizza.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Papa's Pizzeria</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/html/papaScooperia">
+        <img src="img/papascoop.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Papa's Scooperia</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/html/papaSushiria">
+        <img src="img/papasushi.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Papa's Sushiria</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/html/papaTacoMia">
+        <img src="img/papataco.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Papa's Tacomia</span>
+      </div>
+    </div>
+
+    <div class="game-card" id="">
+      <a href="/games/html/papaWingeria">
+        <img src="img/papawing.png" style="width: 150px;">
+      </a>
+      <div class="game-title-overlay">
+        <span>Papa's Wingeria</span>
+      </div>
+    </div>
+
+</div>  
+
+<br><br>   
+
+<script>
+function refreshWarning() {
+  window.alert('In case of a black screen, please reload and try again \n Always wait before clicking enter. \n CLICKING TRIGGERS BLACK SCREEN!')
+}
+</script>
+
+</body>
+</html>
